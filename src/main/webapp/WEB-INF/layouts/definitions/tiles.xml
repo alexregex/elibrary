@@ -47,7 +47,7 @@
             <put-attribute name="tagline" value="You are successfully logout" />
             <put-attribute name="content" value="/WEB-INF/views/logout.jsp" />
         </definition>
-<!-- Admin panel -->
+<!-- Administrator panel -->
     <definition name="adminLayout" template="/WEB-INF/layouts/template/adminLayout.jsp">
         <put-attribute name="content" value="" />
     </definition>
