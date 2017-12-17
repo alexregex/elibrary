@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!-- Basic layout -->
+<tiles-definitions>
+    <definition name="baseLayout" template="/WEB-INF/layouts/template/baseLayout.jsp">
+        <put-attribute name="title" value="Sample Title" />
+        <put-attribute name="heading" value="" />
+        <put-attribute name="tagline" value="" />
+        <put-attribute name="navigation" value="/WEB-INF/layouts/template/navigation.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/layouts/template/footer.jsp" />
+    </definition>
+        <definition name="books" extends="baseLayout">
+            <put-attribute name="title" value="Books" />
+            <put-attribute name="heading" value="Books" />
+            <put-attribute name="tagline" value="All available books" />
+            <put-attribute name="content" value="/WEB-INF/views/books.jsp" />
+        </definition>
+        <definition name="book" extends="baseLayout">
+            <put-attribute name="title" value="Book" />
+            <put-attribute name="heading" value="Book" />
+            <put-attribute name="tagline" value="Book details info" />
+            <put-attribute name="content" value="/WEB-INF/views/book.jsp" />
+        </definition>
+    <definition name="newUser" extends="baseLayout">
+        <put-attribute name="title" value="registration" />
+        <put-attribute name="heading" value="Create account" />
+        <put-attribute name="tagline" value="Enter your personal registration credentials" />
+        <put-attribute name="content" value="/WEB-INF/views/newUser.jsp" />
+    </definition>
+        <definition name="login" extends="baseLayout">
+            <put-attribute name="title" value="sign-in" />
+            <put-attribute name="heading" value="Sign-in" />
+            <put-attribute name="tagline" value="Enter your authorization credentials" />
+            <put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+        </definition>
+    <definition name="accessDenied" extends="baseLayout">
+            <put-attribute name="title" value="access denied" />
+            <put-attribute name="heading" value="Access denied" />
+            <put-attribute name="tagline" value="You have not permission for this page" />
+            <put-attribute name="content" value="/WEB-INF/views/accessDenied.jsp" />
+        </definition>
+    <definition name="logout" extends="baseLayout">
+            <put-attribute name="title" value="Sign-out" />
+            <put-attribute name="heading" value="Sign-out" />
+            <put-attribute name="tagline" value="You are successfully logout" />
+            <put-attribute name="content" value="/WEB-INF/views/logout.jsp" />
+        </definition>
+<!-- Admin panel -->
+    <definition name="adminLayout" template="/WEB-INF/layouts/template/adminLayout.jsp">
+        <put-attribute name="content" value="" />
+    </definition>
+    <definition name="newBook" extends="adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/newBook.jsp"/>
+    </definition>
+    <definition name="editBook" extends="adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/editBook.jsp"/>
+    </definition>
+    <definition name="editUser" extends="adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/editUser.jsp"/>
+    </definition>
+    <definition name="booksList" extends="adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/booksList.jsp"/>
+    </definition>
+    <definition name="usersList" extends="adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/usersList.jsp"/>
+    </definition>
+</tiles-definitions>
