@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section class="container">
     <div class="row">
@@ -47,5 +48,7 @@
                aria-pressed="true"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to books</a>
         </div>
     </div>
+    <jsp:include page="comment.jsp"/>
 </section>
+
 

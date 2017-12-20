@@ -3,10 +3,11 @@ package com.libproject.elibrary.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "BOOK")
@@ -44,6 +45,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "book")
+    List<Comment> comments = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -115,6 +119,14 @@ public class Book {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

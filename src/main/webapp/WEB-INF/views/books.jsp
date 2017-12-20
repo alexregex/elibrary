@@ -16,7 +16,7 @@
                         <p style="font-size: medium"><span style="font-family: Arial;font-weight: bold">
                                    Publishing: </span>${book.publishing}</p>
                         <p>
-                            <a href="<spring:url value="/books/book?id=${book.id}" />" class="btn btn-info"
+                            <a href="<c:url value='/books/book-${book.id}' />" class="btn btn-info"
                                role="button" aria-pressed="true"><span style="font-size: medium !important;"><i class="fa fa-book" aria-hidden="true"></i> Details</span></a>
                         </p>
                     </div>

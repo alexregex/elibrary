@@ -1,8 +1,10 @@
 package com.libproject.elibrary.controller;
 
 import com.libproject.elibrary.model.Book;
+import com.libproject.elibrary.model.Comment;
 import com.libproject.elibrary.model.User;
 import com.libproject.elibrary.service.BookService;
+import com.libproject.elibrary.service.CommentService;
 import com.libproject.elibrary.service.UserService;
 import org.apache.commons.io.FilenameUtils;
 import org.openimaj.image.ImageUtilities;
@@ -25,7 +27,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")
@@ -46,6 +47,9 @@ public class BookController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping("/all")
     public String books(ModelMap modelMap) {
         List<Book> books = bookService.findAllBooks();
@@ -60,9 +64,13 @@ public class BookController {
         return "booksList";
     }
 
-    @RequestMapping(value = "/book", method = RequestMethod.GET)
-    public String getBookById(@RequestParam("id") Integer id, ModelMap modelMap) {
+    @RequestMapping(value = "/book-{id}", method = RequestMethod.GET)
+    public String getBookById(@PathVariable("id") Integer id, ModelMap modelMap) {
         modelMap.addAttribute("book", bookService.findById(id));
+        Comment comment = new Comment();
+        modelMap.addAttribute("newComment", comment);
+
+        modelMap.addAttribute("comments", commentService.findAllComments());
         return "book";
     }
 
@@ -147,8 +155,8 @@ public class BookController {
             e.printStackTrace();
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByLogin(authentication.getName());
+
+        User user = getCurrentAuthentivationUser();
 
         newBook.setUser(user);
         newBook.setCover(coverFile.getOriginalFilename());
@@ -272,6 +280,12 @@ public class BookController {
     @InitBinder
     public void initialiseBinder(WebDataBinder dataBinder) {
         dataBinder.setAllowedFields("id", "title", "author", "publishing", "description", "cover", "link");
+    }
+
+    User getCurrentAuthentivationUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByLogin(authentication.getName());
+        return user;
     }
 }
 

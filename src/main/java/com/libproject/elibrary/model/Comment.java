@@ -1,13 +1,14 @@
 package com.libproject.elibrary.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "COMMENT")
-public class Comment {
+public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,35 +16,21 @@ public class Comment {
     @Column(name = "commentText")
     private String commentText;
 
-    @Column(name = "dateTime")
-    private LocalDateTime dateTime;
-
-    @Column(name = "modifiedDateTime")
-    private LocalDateTime modifiedDateTime;
+    @CreationTimestamp
+    @Column(name = "dateTime",columnDefinition="DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 
     @Column(name = "deleted")
     private boolean deleted = false;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "parent_id")
-    private Comment parentComment;
-
-    @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
-    @OrderBy("dateTime ASC")
-    private List<Comment> childrenComments = new ArrayList<>();
-
-    public int commentLevel() {
-        Comment comment = this;
-        int level = 0;
-        while ((comment = comment.getParentComment()) != null)
-            level++;
-        return level;
-    }
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     public Integer getId() {
         return id;
@@ -61,20 +48,12 @@ public class Comment {
         this.commentText = commentText;
     }
 
-    public LocalDateTime getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
-    }
-
-    public LocalDateTime getModifiedDateTime() {
-        return modifiedDateTime;
-    }
-
-    public void setModifiedDateTime(LocalDateTime modifiedDateTime) {
-        this.modifiedDateTime = modifiedDateTime;
     }
 
     public boolean isDeleted() {
@@ -93,19 +72,11 @@ public class Comment {
         this.user = user;
     }
 
-    public Comment getParentComment() {
-        return parentComment;
+    public Book getBook() {
+        return book;
     }
 
-    public void setParentComment(Comment parentComment) {
-        this.parentComment = parentComment;
-    }
-
-    public List<Comment> getChildrenComments() {
-        return childrenComments;
-    }
-
-    public void setChildrenComments(List<Comment> childrenComments) {
-        this.childrenComments = childrenComments;
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
