@@ -4,7 +4,8 @@ import com.libproject.elibrary.model.Book;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 @Repository("BookDao")
 public class BookDaoImpl extends AbstractDao<Integer,Book> implements BookDao {
@@ -26,8 +27,8 @@ public class BookDaoImpl extends AbstractDao<Integer,Book> implements BookDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Book> findAllBooks() {
+    public Collection<Book> findAllBooks() {
         Criteria criteria = createEntityCriteria();
-        return (List<Book>) criteria.list();
+        return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 }

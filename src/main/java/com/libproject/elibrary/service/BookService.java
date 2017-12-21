@@ -3,7 +3,9 @@ package com.libproject.elibrary.service;
 import com.libproject.elibrary.model.Book;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public interface BookService {
 
@@ -17,5 +19,5 @@ public interface BookService {
 
     void removeFile(String path);
 
-    List<Book> findAllBooks();
+    Collection<Book> findAllBooks();
 }

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service("bookService")
 @Transactional
@@ -46,7 +48,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findAllBooks() {
+    public Collection<Book> findAllBooks() {
         return bookDao.findAllBooks();
     }
 

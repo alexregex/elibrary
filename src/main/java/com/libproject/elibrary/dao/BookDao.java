@@ -2,7 +2,8 @@ package com.libproject.elibrary.dao;
 
 import com.libproject.elibrary.model.Book;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 public interface BookDao {
 
@@ -12,5 +13,5 @@ public interface BookDao {
 
     void deleteBook(Book book);
 
-    List<Book> findAllBooks();
+    Collection<Book> findAllBooks();
 }
