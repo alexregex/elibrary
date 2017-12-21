@@ -42,11 +42,12 @@ public class Book {
     @Column(name = "date_add", nullable = false)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("dateTime ASC")
     List<Comment> comments = new ArrayList<>();
 
     public Integer getId() {
