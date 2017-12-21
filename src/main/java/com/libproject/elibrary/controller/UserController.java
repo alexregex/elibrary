@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result) {
+    public String saveUser(@Valid User user, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
         if (result.hasErrors()) {
             return "newUser";
         }
@@ -85,7 +85,11 @@ public class UserController {
                 .collect(Collectors.toSet()));
 
         userService.saveUser(user);
-        return "redirect:/books/all";
+        persistentTokenBasedRememberMeServices.logout(request,
+                response,
+                SecurityContextHolder.getContext().getAuthentication());
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/delete-user-{id}", method = RequestMethod.GET)
