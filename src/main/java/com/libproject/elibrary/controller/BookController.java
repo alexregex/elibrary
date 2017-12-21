@@ -25,8 +25,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/books")
@@ -52,25 +51,28 @@ public class BookController {
 
     @RequestMapping("/all")
     public String books(ModelMap modelMap) {
-        List<Book> books = bookService.findAllBooks();
+        Collection<Book> books = new HashSet<>(bookService.findAllBooks());
         modelMap.addAttribute("books", books);
         return "books";
     }
 
     @RequestMapping(value = "/admin-booklist", method = RequestMethod.GET)
     public String getBooksAsTable(ModelMap modelMap) {
-        List<Book> books = bookService.findAllBooks();
+        Collection<Book> books = new HashSet<>(bookService.findAllBooks());
         modelMap.addAttribute("books", books);
         return "booksList";
     }
 
     @RequestMapping(value = "/book-{id}", method = RequestMethod.GET)
     public String getBookById(@PathVariable("id") Integer id, ModelMap modelMap) {
-        modelMap.addAttribute("book", bookService.findById(id));
+        Book book = bookService.findById(id);
+        modelMap.addAttribute("book", book);
         Comment comment = new Comment();
         modelMap.addAttribute("newComment", comment);
+        List<Comment> comments =  book.getComments();
 
-        modelMap.addAttribute("comments", commentService.findAllComments());
+        List<Comment> comments1 = new ArrayList<>();
+        modelMap.addAttribute("comments", comments);
         return "book";
     }
 
