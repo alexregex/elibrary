@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -230,7 +231,6 @@ public class BookController {
                 e.printStackTrace();
             }
             //Delete previous cover
-//            bookService.removeFile(rootDirectory + "resources\\covers\\" + book.getCover());
             if (!coverFile.getOriginalFilename().equals(book.getCover())) {
                 bookService.removeFile(rootDirectory + "resources\\covers\\" + book.getCover());
             }else {
@@ -277,6 +277,25 @@ public class BookController {
         bookService.updateBook(book);
 
         return "redirect:/books/admin-booklist";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String getSearchBook() {
+        return "search";
+    }
+
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public ModelAndView searchBook(@RequestParam String textSearch, @RequestParam Boolean byTitle, @RequestParam Boolean byDescription) {
+        System.out.println("textSearch: " + textSearch);
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("searchValue", textSearch);
+        modelAndView.addObject("byTitleValue",  byTitle.toString());
+        modelAndView.addObject("byDescriptionValue",  byDescription.toString());
+
+        modelAndView.setViewName("search");
+        return modelAndView;
     }
 
     @InitBinder
