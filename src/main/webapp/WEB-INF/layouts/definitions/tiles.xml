@@ -47,6 +47,12 @@
             <put-attribute name="tagline" value="You are successfully logout" />
             <put-attribute name="content" value="/WEB-INF/views/logout.jsp" />
         </definition>
+    <definition name="search" extends="baseLayout">
+            <put-attribute name="title" value="Search" />
+            <put-attribute name="heading" value="Search" />
+            <put-attribute name="tagline" value="Search needed books" />
+            <put-attribute name="content" value="/WEB-INF/views/search.jsp" />
+        </definition>
 <!-- Administrator panel -->
     <definition name="adminLayout" template="/WEB-INF/layouts/template/adminLayout.jsp">
         <put-attribute name="content" value="" />

@@ -102,3 +102,10 @@
 .comment-list .comment-post {
     margin-top: 6px;
 }
+
+.search-options {
+    font-family: sans-serif, Helvetica, Arial;
+    font-weight: bolder;
+    font-size: 17px;
+    letter-spacing: 0.2em;
+}
