@@ -2,6 +2,7 @@ package com.libproject.elibrary.service;
 
 import com.libproject.elibrary.dao.BookDao;
 import com.libproject.elibrary.model.Book;
+import com.twelvemonkeys.util.LinkedSet;
 import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -55,7 +57,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Collection<Book> searchByText(String searchText, boolean isByTitle, boolean isByDescription) {
-        Collection<Book> resultSearch = new HashSet<>();
+        Collection<Book> resultSearch = new LinkedSet<>();
         try {
             FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
             fullTextSession.createIndexer().startAndWait();
@@ -69,7 +71,7 @@ public class BookServiceImpl implements BookService {
                 org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(lucenceQuery,
                         Book.class);
 
-                resultSearch.addAll((HashSet<Book>)fullTextQuery.list());
+                resultSearch.addAll(fullTextQuery.list());
             }
 
             if(isByDescription) {
@@ -78,7 +80,7 @@ public class BookServiceImpl implements BookService {
                 org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(lucenceQuery,
                         Book.class);
 
-                resultSearch.addAll((HashSet<Book>)fullTextQuery.list());
+                resultSearch.addAll(fullTextQuery.list());
             }
 
         } catch (InterruptedException e) {
