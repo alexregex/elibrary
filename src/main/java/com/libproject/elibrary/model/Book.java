@@ -2,6 +2,8 @@ package com.libproject.elibrary.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -11,12 +13,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "BOOK")
+@Indexed
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotEmpty(message = "title need to be enter")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "title",  nullable = false)
     private String title;
 
@@ -35,6 +39,7 @@ public class Book {
     @Column(name = "cover", nullable = false)
     private String cover;
 
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "description", nullable = false)
     private String description;
 

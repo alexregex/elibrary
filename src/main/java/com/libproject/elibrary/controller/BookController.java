@@ -287,12 +287,14 @@ public class BookController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public ModelAndView searchBook(@RequestParam String textSearch, @RequestParam Boolean byTitle, @RequestParam Boolean byDescription) {
-        System.out.println("textSearch: " + textSearch);
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("searchValue", textSearch);
-        modelAndView.addObject("byTitleValue",  byTitle.toString());
-        modelAndView.addObject("byDescriptionValue",  byDescription.toString());
+        List<Book> findingBooks = new ArrayList<>(bookService.searchByText(textSearch, byTitle, byDescription));
+        modelAndView.addObject("searchResult", findingBooks);
+
+        if (findingBooks.isEmpty()) {
+            modelAndView.addObject("searchMessage", "Books were not found! Refine your search...");
+        }
 
         modelAndView.setViewName("search");
         return modelAndView;
