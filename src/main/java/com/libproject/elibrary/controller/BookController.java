@@ -176,7 +176,7 @@ public class BookController {
         return "redirect:/books/admin-booklist";
     }
 
-    @RequestMapping(value = {"/update-book-{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/edit-book-{id}"}, method = RequestMethod.GET)
     public String editBook(@PathVariable Integer id, ModelMap modelMap) {
         Book book;
         book = bookService.findById(id);
@@ -185,7 +185,7 @@ public class BookController {
         return "editBook";
     }
 
-    @RequestMapping(value = {"/update-book-{id}"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/edit-book-{id}"}, method = RequestMethod.POST)
     public String updateBook(@Valid @ModelAttribute("editBook") Book book,
                              BindingResult result,
                              @RequestParam(name = "bookFile", required = false) MultipartFile bookFile,

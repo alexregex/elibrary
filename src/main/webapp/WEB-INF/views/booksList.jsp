@@ -36,7 +36,7 @@
                         <i class="fa fa-times" aria-hidden="true"></i>  Delete</a>
                     </td>
                     <td>
-                        <a href="<c:url value='/books/update-book-${book.id}' />" class="btn btn-success custom-width">
+                        <a href="<c:url value='/books/edit-book-${book.id}' />" class="btn btn-success custom-width">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  Edit</a>
 
                     </td>

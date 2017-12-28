@@ -42,7 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests().antMatchers("/login","/books/all").permitAll()
-                                .antMatchers("/books/add", "/books/admin-list").access("hasRole('ADMIN')").and().formLogin()
+                                .antMatchers("/admin-userslist", "/delete-user-{id}", "/edit-user-{id}",
+                                                         "/books/add", "/books/admin-list","/books/delete-book-{id}", "/books/edit-book-{id}")
+                                .access("hasRole('ADMIN')").and().formLogin()
                                 .loginPage("/login").usernameParameter("login").passwordParameter("password").successHandler(successHandler)
                                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository).tokenValiditySeconds(86400)
                                 .and().csrf().and().exceptionHandling().accessDeniedPage("/access_denied");
