@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @ControllerAdvice
 @RequestMapping("/")
-public class MainController {
+public class MainPageController {
 
     @RequestMapping
-    public String index(Model model) {
+    public String mainPage(Model model) {
         return "redirect:/books/all";
     }
 }
