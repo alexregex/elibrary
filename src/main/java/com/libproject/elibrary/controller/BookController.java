@@ -113,7 +113,6 @@ public class BookController {
 
         //Check the resolution of upload image
         try {
-
             MBFImage fImage = ImageUtilities.readMBF(coverFile.getInputStream());
             if (fImage.getHeight() > maxCoverHeight | fImage.getWidth() > maxCoverWidth) {
                 modelMap.addAttribute("uploadCoverError",
