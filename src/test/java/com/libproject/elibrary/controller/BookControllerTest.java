@@ -12,6 +12,7 @@ import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -65,6 +66,18 @@ public class BookControllerTest {
     }
 
     @Test
+    public void shouldReturnBookListIfAdmin() throws Exception {
+        mockMvc.perform(get("/books/admin-booklist").with(userAdmin()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void tryingRemoveBookByUser() throws Exception {
+        mockMvc.perform(get("/books/delete-book-5").with(userJoe()).with(csrf()))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     public void shouldCreateNewBookPageIfAdmin()  throws Exception {
         mockMvc.perform(get("/books/add").with(userAdmin()))
                .andExpect(status().isOk())
@@ -85,24 +98,10 @@ public class BookControllerTest {
                 .andExpect(status().isForbidden());
     }
 
-    @Test
-    public void shouldAddNewBook() throws Exception {
-        String title = "test book";
-        String author = "test author";
-        String publishing = "test ISBN";
-        String description = "test description";
-
-//        String link = "link";
-//        String cover = "cover";
-
-        File img = new File("D:\\Projects\\elibrary\\src\\main\\webapp\\resources\\covers\\martin_flower_cleancode.jpg");
-        File pdf = new File("D:\\Projects\\elibrary\\src\\main\\webapp\\resources\\books\\spring-mvc-beginners-guide-2nd.pdf");
-
-        FileInputStream imgInputStream = new FileInputStream(img);
-        FileInputStream pdfInputStream = new FileInputStream(pdf);
-
-        MockMultipartFile coverFile = new MockMultipartFile("martin_flower_cleancode", imgInputStream);
-        MockMultipartFile bookFile = new MockMultipartFile("Clean_Code_A_Handbook_of_Agile_Software_Craftsmanship_1st_Edition", pdfInputStream);
+    @Test //? MultipartFile
+    public void tryingAddNewBook() throws Exception {
+        MockMultipartFile coverFile = new MockMultipartFile("test_image_file", "This is test image file".getBytes());
+        MockMultipartFile bookFile = new MockMultipartFile("test_book_file", "This is test image book".getBytes());
 
 
         Map<String, String> contentTypeParams = new HashMap<>();
@@ -111,37 +110,17 @@ public class BookControllerTest {
         contentTypeParams.put("author", "this_is_test_author");
         contentTypeParams.put("publishing", "this_is_test_publishing");
         contentTypeParams.put("description", "this_is_test_description");
-        contentTypeParams.put("coverFile", "martin_flower_cleancode.jpg");
-        contentTypeParams.put("bookFile", "spring-mvc-beginners-guide-2nd.pdf");
 
         MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
-
-/*        mockMvc.perform(post("/books/add")
-                .with(userAdmin())
-                .with(csrf())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .param("id", "12")
-        .param("title", title)
-        .param("publishing", publishing)
-        .param("description", description)
-        .param("cover"))
-                .andExpect(status().isFound())
-                .andExpect(model().hasErrors());*/
-
-/*        mockMvc.perform(MockMvcRequestBuilders.fileUpload("/books/add").file(coverFile).file(bookFile)
-                .with(userAdmin()).with(csrf())
-                .param("id", "12")
-                .param("title", title)
-                .param("author", author)
-                .param("publishing", publishing)
-                .param("description", description)).andDo(print());*/
 
         mockMvc.perform(post("/books/add")
                 .with(userAdmin())
                         .with(csrf())
                         .content(coverFile.getBytes())
                         .content(bookFile.getBytes())
-                        .contentType(mediaType)).andDo(print());
+                        .contentType(mediaType))
+                .andDo(print())
+                .andExpect(status().is(400));
 
     }
 }

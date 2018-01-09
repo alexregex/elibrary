@@ -283,7 +283,6 @@ public class BookController {
         return "search";
     }
 
-
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public ModelAndView searchBook(@RequestParam String textSearch, @RequestParam Boolean byTitle, @RequestParam Boolean byDescription) {
         ModelAndView modelAndView = new ModelAndView();
