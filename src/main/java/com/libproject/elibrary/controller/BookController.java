@@ -157,7 +157,7 @@ public class BookController {
         }
 
 
-        User user = getCurrentAuthentivationUser();
+        User user = getCurrentAuthenticationUser();
 
         newBook.setUser(user);
         newBook.setCover(coverFile.getOriginalFilename());
@@ -302,7 +302,7 @@ public class BookController {
         dataBinder.setAllowedFields("id", "title", "author", "publishing", "description", "cover", "link");
     }
 
-    private User getCurrentAuthentivationUser() {
+    private User getCurrentAuthenticationUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByLogin(authentication.getName());
         return user;
