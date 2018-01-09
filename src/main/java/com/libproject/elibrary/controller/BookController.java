@@ -84,7 +84,6 @@ public class BookController {
         return "newBook";
     }
 
-
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String saveBook(@Valid @ModelAttribute("newBook") Book newBook,
                            BindingResult result,
@@ -305,7 +304,7 @@ public class BookController {
         dataBinder.setAllowedFields("id", "title", "author", "publishing", "description", "cover", "link");
     }
 
-    User getCurrentAuthentivationUser() {
+    private User getCurrentAuthentivationUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByLogin(authentication.getName());
         return user;
