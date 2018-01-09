@@ -70,5 +70,4 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
-
 }
