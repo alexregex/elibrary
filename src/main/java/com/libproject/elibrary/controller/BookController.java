@@ -72,7 +72,6 @@ public class BookController {
         modelMap.addAttribute("newComment", comment);
         List<Comment> comments =  book.getComments();
 
-        List<Comment> comments1 = new ArrayList<>();
         modelMap.addAttribute("comments", comments);
         return "book";
     }
