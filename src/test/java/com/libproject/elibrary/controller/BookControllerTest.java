@@ -1,54 +1,21 @@
 package com.libproject.elibrary.controller;
 
-import com.libproject.elibrary.config.WebApplicationContextConfig;
-import com.libproject.elibrary.security.SecurityConfiguration;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.security.web.FilterChainProxy;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.client.ExpectedCount;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
-import javax.swing.*;
-import javax.transaction.Transactional;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.libproject.elibrary.utils.SecurityUtils.userAdmin;
 import static com.libproject.elibrary.utils.SecurityUtils.userJoe;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {WebApplicationContextConfig.class, SecurityConfiguration.class})
-@WebAppConfiguration
-public class BookControllerTest {
 
-    @Autowired
-    WebApplicationContext applicationContext;
-
-    private MockMvc mockMvc;
-
-    @Before
-    public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.applicationContext).apply(springSecurity()).build();
-    }
+public class BookControllerTest extends AbstractIntegrationTest {
 
     @Test
     public void shouldReturnBooks() throws Exception {
