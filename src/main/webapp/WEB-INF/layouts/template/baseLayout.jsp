@@ -5,7 +5,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ui.bootstrap.demo">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,5 +65,10 @@
         <tiles:insertAttribute name="footer"/>
     </div>
 </div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/rating.js"></script>
+
 </body>
 </html>
