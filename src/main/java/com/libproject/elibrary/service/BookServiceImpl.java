@@ -66,7 +66,7 @@ public class BookServiceImpl implements BookService {
                     .forEntity(Book.class).get();
 
             if(isByTitle) {
-                org.apache.lucene.search.Query lucenceQuery = queryBuilder.keyword().onField("title").matching(searchText).createQuery();
+                org.apache.lucene.search.Query lucenceQuery = queryBuilder.keyword().fuzzy().onField("title").matching(searchText).createQuery();
 
                 org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(lucenceQuery,
                         Book.class);
