@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 @Service("bookService")
 @Transactional
