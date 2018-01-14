@@ -5,7 +5,6 @@ import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.Set;
 
 @Repository("BookDao")
 public class BookDaoImpl extends AbstractDao<Integer,Book> implements BookDao {

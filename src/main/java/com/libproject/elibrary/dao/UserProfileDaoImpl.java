@@ -1,7 +1,6 @@
 package com.libproject.elibrary.dao;
 
 import com.libproject.elibrary.model.UserProfile;
-import org.apache.tools.ant.types.resources.Restrict;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
