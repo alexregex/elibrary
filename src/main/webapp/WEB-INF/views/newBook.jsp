@@ -56,7 +56,7 @@
                 <label class="control-label col-lg-2" for="uploadBook"> <spring:message code="addNewBook.form.uploadBook.label" />
                 </label>
                 <div class="col-lg-10">
-                    <input id="uploadBook" accept=".txt,.rtf,.doc,.odt,.pdf" type="file" name="bookFile" class="form:input-large" />
+                    <input id="uploadBook" accept=".txt,.rtf,.doc,.docx,.odt,.pdf" type="file" name="bookFile" class="form:input-large" />
                     <output class="has-error" title="uploadBookError">${uploadBookError}</output>
                 </div>
             </div>

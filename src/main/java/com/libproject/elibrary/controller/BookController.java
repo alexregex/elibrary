@@ -127,9 +127,9 @@ public class BookController {
         String bookFileExtension = FilenameUtils.getExtension(bookFile.getOriginalFilename());
         if (!(bookFileExtension.equalsIgnoreCase("txt") | bookFileExtension.equalsIgnoreCase("rtf") |
                 bookFileExtension.equalsIgnoreCase("doc") | bookFileExtension.equalsIgnoreCase("odt") |
-                bookFileExtension.equalsIgnoreCase("pdf"))) {
+                bookFileExtension.equalsIgnoreCase("pdf") | bookFileExtension.equalsIgnoreCase("docx"))) {
             modelMap.addAttribute("uploadBookError",
-                    "wrong extension of book file ! Allows: *.txt, *.rtf *.doc, *.odt, *.pdf.");
+                    "wrong extension of book file ! Allows: *.txt, *.rtf *.doc, *.docx, *.odt, *.pdf.");
             return "newBook";
         }
 
@@ -242,9 +242,9 @@ public class BookController {
             String bookFileExtension = FilenameUtils.getExtension(bookFile.getOriginalFilename());
             if (!(bookFileExtension.equalsIgnoreCase("txt") | bookFileExtension.equalsIgnoreCase("rtf") |
                     bookFileExtension.equalsIgnoreCase("doc") | bookFileExtension.equalsIgnoreCase("odt") |
-                    bookFileExtension.equalsIgnoreCase("pdf"))) {
+                    bookFileExtension.equalsIgnoreCase("pdf") | bookFileExtension.equalsIgnoreCase("docx"))) {
                 modelMap.addAttribute("uploadBookError",
-                        "wrong extension of book file ! Allows: *.txt, *.rtf *.doc, *.odt, *.pdf.");
+                        "wrong extension of book file ! Allows: *.txt, *.rtf *.doc, *.docx, *.odt, *.pdf.");
                 return "editBook";
             }
 
