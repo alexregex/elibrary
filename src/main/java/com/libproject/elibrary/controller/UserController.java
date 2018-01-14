@@ -4,7 +4,6 @@ import com.libproject.elibrary.model.User;
 import com.libproject.elibrary.model.UserProfile;
 import com.libproject.elibrary.service.UserProfileService;
 import com.libproject.elibrary.service.UserService;
-import net.sourceforge.jeuclid.elements.presentation.token.Mo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
