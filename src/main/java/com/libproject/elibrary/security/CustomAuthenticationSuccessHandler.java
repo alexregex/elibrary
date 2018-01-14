@@ -1,9 +1,6 @@
 package com.libproject.elibrary.security;
 
-import com.libproject.elibrary.model.User;
-import com.libproject.elibrary.model.UserProfile;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -14,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collection;
 
+/*Redirect after authorization, based by role*/
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
