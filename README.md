@@ -11,4 +11,4 @@ Database will created automatically with `hibernate.hbm2ddl.auto` and data will 
 * **login**: admin
 * **password**: abc125
 
-Deployed with TomCat 9.0.1. In `elibrary/src/db_schema/` folder contains Workbench schema (model) for current database. 
+Deployed with **TomCat 9.0.1**. In `elibrary/src/db_schema/` folder contains Workbench schema (model) for current database. 
