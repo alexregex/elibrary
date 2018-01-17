@@ -13,6 +13,7 @@
 
     <title><tiles:insertAttribute name="title"/></title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link href="/static/css/additional.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
@@ -41,12 +42,12 @@
 </section>
 
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron gradient" style="padding-top: 3px !important;">
         <div class="header">
             <ul class="nav nav-pills pull-right">
                 <tiles:insertAttribute name="navigation"/>
             </ul>
-            <h3 class="text-muted">Electronic Library</h3>
+           <h3 class="label-el"> <img src="${pageContext.request.contextPath}/static/img/logo-book.png" /> Electronic Library</h3>
         </div>
 
         <h1>
@@ -60,11 +61,12 @@
     <div class="row">
         <tiles:insertAttribute name="content"/>
     </div>
-
-    <div class="footer" style="margin-top: 5%; text-align: center">
-        <tiles:insertAttribute name="footer"/>
-    </div>
 </div>
+<footer class="footer">
+    <div class="container customize-footer-container">
+        <p class="text-muted"><tiles:insertAttribute name="footer"/></p>
+    </div>
+</footer>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>

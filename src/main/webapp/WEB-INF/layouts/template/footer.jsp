@@ -1,1 +1,1 @@
-<p>&copy; elibrary 2017</p>
+&copy; elibrary 2018
