@@ -4,7 +4,7 @@
 START TRANSACTION;
 USE `elibrarydb`;
 INSERT INTO `elibrarydb`.`APP_USER` (`id`, `first_name`, `last_name`, `login`, `password`, `email`) VALUES (1, 'Alexander', 'Voloshyn', 'admin', '$2a$10$4eqIF5s/ewJwHK1p8lqlFOEm2QIA0S8g6./Lok.pQxqcxaBZYChRm', 'voloshyn.olexander@gmail.com');
-INSERT INTO `elibrarydb`.`APP_USER` (`id`, `first_name`, `last_name`, `login`, `password`, `email`) VALUES (DEFAULT, 'Ivan', 'Zakulko', 'user', '$2a$10$i/L2t39z7zDxdMj5Rmf6lebe8usKFv5wSHVKoq26SAS2QN1Dn3Mvm', 'ivan@yahoo.com');
+INSERT INTO `elibrarydb`.`APP_USER` (`id`, `first_name`, `last_name`, `login`, `password`, `email`) VALUES (DEFAULT, 'Ivan', 'Zakulko', 'user', '$2a$10$oodkWptD.UKvOOfaAmAaLOhclhD3Eml8I9OH/3L17TQTb.G57VatK', 'ivan@yahoo.com');
 
 COMMIT;
 
@@ -19,6 +19,16 @@ INSERT INTO `elibrarydb`.`BOOK` (`id`, `title`, `author`, `publishing`, `cover`,
 INSERT INTO `elibrarydb`.`BOOK` (`id`, `title`, `author`, `publishing`, `cover`, `link`, `description`, `date_add`, `user_id`) VALUES (3, 'Clean Code. 1st Edition', 'Robert C. Martin', 'Prentice Hall', 'martin_flower_cleancode.jpg', 'Clean_Code_A_Handbook_of_Agile_Software_Craftsmanship_1st_Edition.pdf', 'Even bad code can function. But if code isn t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code.', '2017-03-04', 1);
 INSERT INTO `elibrarydb`.`BOOK` (`id`, `title`, `author`, `publishing`, `cover`, `link`, `description`, `date_add`, `user_id`) VALUES (4, 'Effective Java (3rd Edition)', 'Joshua Bloch', 'Amazon Inc', 'effective_java_3rd _edition.png', 'Effective_Java_3rd_edition.docx', 'Java has changed dramatically since the previous edition of Effective Java was published shortly after the release of Java 9. This Jolt award-winning classic has now been thoroughly updated to take full advantage.', '2018-01-14', 2);
 
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `elibrarydb`.`COMMENT`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `elibrarydb`;
+INSERT INTO `elibrarydb`.`COMMENT` (`id`, `commentText`, `dateTime`, `deleted`, `book_id`, `user_id`) VALUES (1,'Test comment from admin', '2018-01-18 13:39:53', FALSE, 1, 1);
+INSERT INTO `elibrarydb`.`COMMENT` (`id`, `commentText`, `dateTime`, `deleted`, `book_id`, `user_id`) VALUES (2,'Test comment from user', '2018-01-18 13:45:37', FALSE, 1, 2);
 COMMIT;
 
 
