@@ -6,6 +6,7 @@ import com.libproject.elibrary.model.User;
 import com.libproject.elibrary.service.BookService;
 import com.libproject.elibrary.service.CommentService;
 import com.libproject.elibrary.service.UserService;
+import com.twelvemonkeys.util.LinkedSet;
 import org.apache.commons.io.FilenameUtils;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
@@ -53,7 +54,7 @@ public class BookController {
 
     @RequestMapping("/all")
     public String books(ModelMap modelMap) {
-        Collection<Book> books = new HashSet<>(bookService.findAllBooks());
+        Collection<Book> books = new LinkedSet<>(bookService.findAllBooks());
         modelMap.addAttribute("books",
                 books.stream().sorted(Comparator.comparing(Book::getDate))
                         .collect(Collectors.toList())
