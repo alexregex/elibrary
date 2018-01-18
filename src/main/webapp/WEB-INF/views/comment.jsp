@@ -57,7 +57,7 @@
         </c:otherwise>
     </c:choose>
 
-    <div id="comment">
+    <div id="comment" style="margin-bottom: 10px">
         <hr style="border-top: 2px ridge darkcyan !important; margin-top: 10px">
         <h3 style="font-weight: 500">Add Comment:</h3>
         <form:form modelAttribute="newComment" method="post" action="/books/book-${book.id}/comments/add" class="form-horizontal">
