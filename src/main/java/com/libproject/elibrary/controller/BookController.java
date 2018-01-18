@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/books")
@@ -53,7 +54,10 @@ public class BookController {
     @RequestMapping("/all")
     public String books(ModelMap modelMap) {
         Collection<Book> books = new HashSet<>(bookService.findAllBooks());
-        modelMap.addAttribute("books", books);
+        modelMap.addAttribute("books",
+                books.stream().sorted(Comparator.comparing(Book::getDate))
+                        .collect(Collectors.toList())
+        );
         return "books";
     }
 
