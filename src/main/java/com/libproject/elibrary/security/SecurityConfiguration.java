@@ -40,13 +40,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/login","/books/all").permitAll()
+        http.csrf().disable().authorizeRequests()
+                                .antMatchers("/rating/**").permitAll()
+                                .antMatchers("/login","/books/all").permitAll()
                                 .antMatchers("/admin-userslist", "/delete-user-{id}", "/edit-user-{id}",
                                                          "/books/add", "/books/admin-list","/books/delete-book-{id}", "/books/edit-book-{id}")
                                 .access("hasRole('ADMIN')").and().formLogin()
                                 .loginPage("/login").usernameParameter("login").passwordParameter("password").successHandler(successHandler)
                                 .and().rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository).tokenValiditySeconds(86400)
-                                .and().csrf().and().exceptionHandling().accessDeniedPage("/access_denied");
+                                .and().exceptionHandling().accessDeniedPage("/access_denied");
     }
 
     @Bean
@@ -74,5 +76,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationTrustResolver getAuthenticationTrustResolver() {
         return new AuthenticationTrustResolverImpl();
     }
+
 
 }

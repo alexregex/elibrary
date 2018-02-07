@@ -12,14 +12,27 @@
 
         <div class="col-md-5">
             <h1>${book.title}</h1>
+            <%--Rating system--%>
             <sec:authorize access="hasRole('ADMIN') or hasRole('USER')">
-                <div ng-controller="RatingDemoCtrl">
-                    <h4>Rating</h4>
-                    <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+            <div ng-app="myApp" style="background-color: #fcf8e3; padding: 18px; border: 3px outset saddlebrown">
+                <div ng-controller = "BookRatingDtoController as ctrl" ng-init="ctrl.getBookRating(${book.id},
+                                                       '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');">
+                    <div class="row rating-info">
+                        <div class="col-sm-6">Average rating: <span class="value">{{ctrl.bookRatingDto.rating  | number : 2}}</span></div>
+                        <div class="col-sm-5">Number votes: <span class="value">{{ctrl.bookRatingDto.votes}}</span></div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-sm-6"><div star-rating ng-model="ctrl.rating1" readonly="ctrl.isReadonly" max="5"></div></div>
+                        <div class="col-sm-5">
+                            <form ng-submit="ctrl.submit()" method="POST">
+                                <button id="submit" type="submit" class="btn btn-light btn-vote">
+                                    <span class="glyphicon glyphicon-bullhorn"></span> {{ctrl.buttonLabel()}}</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </sec:authorize>
-
+            </div>
+        </sec:authorize>
             <table class="table table-hover"  style="margin-top: 5%">
                 <tbody>
                 <tr>

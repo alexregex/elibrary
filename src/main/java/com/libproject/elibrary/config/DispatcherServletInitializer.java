@@ -2,6 +2,7 @@ package com.libproject.elibrary.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 import java.io.File;
@@ -37,5 +38,11 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
         registration.setMultipartConfig(multipartConfigElement);
 
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        Filter [] singleton = { new CORSFilter() };
+        return singleton;
     }
 }

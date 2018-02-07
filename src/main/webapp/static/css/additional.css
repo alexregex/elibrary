@@ -40,7 +40,6 @@ body {
     background: #5bc0de !important;
 }
 .gradient {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7fbfc+0,d9edf2+40,add9e4+100;Blue+3D+%231 */
     background: #f7fbfc; /* Old browsers */
     background: -moz-linear-gradient(top,  #f7fbfc 0%, #d9edf2 40%, #add9e4 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* Chrome10-25,Safari5.1-6 */
@@ -154,3 +153,42 @@ body {
     font-size: 17px;
     letter-spacing: 0.2em;
 }
+
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+.star-rating .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: 0.05em 0.05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.star-rating .star.filled {
+    color: #fd0;
+}
+.star-rating.readonly .star.filled {
+    color: #fd0;
+}
+
+.rating-info {
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.rating-info .value {
+    font-family: "Arial Black", Gadget, sans-serif;
+    color: darkgoldenrod;
+}
+.btn-vote {
+    background-color: white;
+    font-size: larger;
+    font-weight: bold;
+    color: darkred;
+    border: 2px solid darkred !important;
+}
+

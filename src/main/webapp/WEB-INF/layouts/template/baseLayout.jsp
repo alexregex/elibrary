@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -5,7 +6,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" ng-app="ui.bootstrap.demo">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +15,7 @@
     <title><tiles:insertAttribute name="title"/></title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
-    <link href="/static/css/additional.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/css/additional.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 </head>
@@ -47,7 +48,7 @@
             <ul class="nav nav-pills pull-right">
                 <tiles:insertAttribute name="navigation"/>
             </ul>
-           <h3 class="label-el"> <img src="${pageContext.request.contextPath}/static/img/logo-book.png" /> Electronic Library</h3>
+            <h3 class="label-el"> <img src="${pageContext.request.contextPath}/static/img/logo-book.png" /> Electronic Library</h3>
         </div>
 
         <h1>
@@ -67,10 +68,10 @@
         <p class="text-muted"><tiles:insertAttribute name="footer"/></p>
     </div>
 </footer>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/rating.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+    <script src="<c:url value='/static/js/app.js'/>"></script>
+    <script src="<c:url value='/static/js/rating_controller/rating_controller.js'/>"></script>
+    <script src="<c:url value='/static/js/rating_service/rating_service.js'/>"></script>
 </body>
 </html>
