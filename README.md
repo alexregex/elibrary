@@ -16,3 +16,7 @@ or
 * **password**: u12345
 
 Deployed with **TomCat 9.0.1**. In `elibrary/src/db_schema/` folder contains Workbench schema (model) for current database. 
+
+![alt text](https://i.imgur.com/hxRRhhv.png)
+![alt text](https://i.imgur.com/dpU1dq6.png)
+![alt text](https://i.imgur.com/u1143Hn.png)
