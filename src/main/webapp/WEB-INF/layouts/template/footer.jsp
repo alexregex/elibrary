@@ -1,1 +1,1 @@
-&copy; elibrary 2018
+&copy; e-library 2018
